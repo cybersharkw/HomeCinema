@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HomeCinema: Bausteine für Startseite und Suche -->
+<includes>
+	<!-- ================================================================ Variablen -->
+	<variable name="HCHeroTitle">
+		<value condition="!String.IsEmpty(ListItem.Property(hc_code))">$INFO[ListItem.TVShowTitle]</value>
+		<value condition="String.IsEqual(ListItem.DBType,episode)">$INFO[ListItem.TVShowTitle]</value>
+		<value condition="!String.IsEmpty(ListItem.Title)">$INFO[ListItem.Title]</value>
+		<value>$INFO[ListItem.Label]</value>
+	</variable>
+	<variable name="HCHeroMeta">
+		<value condition="!String.IsEmpty(ListItem.Property(hc_code))">[COLOR hc_gold]$INFO[ListItem.Label2][/COLOR]$INFO[ListItem.Property(hc_episode_title),   ·   ,]</value>
+		<value condition="String.IsEqual(ListItem.DBType,tvshow) + String.IsEqual(ListItem.Property(TotalSeasons),1)">$INFO[ListItem.Year]   ·   1 Staffel$INFO[ListItem.Genre,   ·   ,]$INFO[ListItem.Mpaa,   ·   ,]</value>
+		<value condition="String.IsEqual(ListItem.DBType,tvshow)">$INFO[ListItem.Year]$INFO[ListItem.Property(TotalSeasons),   ·   , Staffeln]$INFO[ListItem.Genre,   ·   ,]$INFO[ListItem.Mpaa,   ·   ,]</value>
+		<value condition="String.IsEmpty(ListItem.Duration) | String.IsEqual(ListItem.Duration(mins),0)">$INFO[ListItem.Year]$INFO[ListItem.Genre,   ·   ,]$INFO[ListItem.Mpaa,   ·   ,]</value>
+		<value>$INFO[ListItem.Year]$INFO[ListItem.Duration(mins),   ·   , Min.]$INFO[ListItem.Genre,   ·   ,]$INFO[ListItem.Mpaa,   ·   ,]</value>
+	</variable>
+	<variable name="HCHeroCredits">
+		<value condition="!String.IsEmpty(ListItem.Director)">$INFO[ListItem.Director,Regie: ,]</value>
+		<value>$INFO[ListItem.Studio]</value>
+	</variable>
+	<variable name="HCBackgroundImage">
+		<value condition="!String.IsEmpty(ListItem.Art(fanart))">$INFO[ListItem.Art(fanart)]</value>
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.fanart))">$INFO[ListItem.Art(tvshow.fanart)]</value>
+		<value>hc/background.png</value>
+	</variable>
+	<variable name="HCEmptyText">
+		<value condition="Library.IsScanningVideo">Deine Sammlung wird gerade geladen. Bilder, Beschreibungen und Darsteller werden einmalig heruntergeladen – die ersten Titel erscheinen gleich.</value>
+		<value condition="$EXP[HCSeriesSection]">Hier erscheinen deine Serien, sobald ein Medienordner mit Serien eingerichtet ist.</value>
+		<value>Wähle den Ordner mit deinen Filmen und Serien. HomeCinema erkennt alles automatisch und lädt Bilder, Beschreibungen und Darsteller.</value>
+	</variable>
+	<!-- Info-Ansicht: gerade vergebene Bewertung sofort zeigen (Eigenschaft setzt rating.py) -->
+	<variable name="HCInfoStars">
+		<value condition="!String.IsEmpty(Window(movieinformation).Property(hc_userrating))">$INFO[Window(movieinformation).Property(hc_userrating),hc/stars,.png]</value>
+		<value>$INFO[ListItem.UserRating,hc/stars,.png]</value>
+	</variable>
+	<variable name="HCSearchLabel">
+		<value condition="String.IsEmpty(Skin.String(HC.Search))">Titel, Schauspieler oder Regie …</value>
+		<value>$INFO[Skin.String(HC.Search)]</value>
+	</variable>
+	<variable name="HCSearchEmptyTitle">
+		<value condition="String.IsEmpty(Skin.String(HC.Search))">Was möchtest du sehen?</value>
+		<value>Keine Treffer</value>
+	</variable>
+	<expression name="HCRowsFocused">ControlGroup(3000).HasFocus | ControlGroup(4000).HasFocus | ControlGroup(1151).HasFocus</expression>
+	<expression name="HCSeriesSection">String.IsEqual(Window(Home).Property(hc_section),series)</expression>
+
+	<!-- ================================================================ Hintergrund -->
+	<include name="HCBackground">
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>1080</height>
+			<texture>colors/black.png</texture>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>1080</height>
+			<aspectratio>scale</aspectratio>
+			<fadetime>600</fadetime>
+			<texture background="true" fallback="hc/background.png">$VAR[HCBackgroundImage]</texture>
+			<animation effect="zoom" start="100" end="107" center="1300,400" time="24000" tween="sine" easing="inout" pulse="true" condition="!Skin.HasSetting(hc_reduce_motion)">Conditional</animation>
+			<animation effect="fade" start="0" end="100" time="900">WindowOpen</animation>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1400</width>
+			<height>1080</height>
+			<texture>hc/gradient_left.png</texture>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>380</top>
+			<width>1920</width>
+			<height>700</height>
+			<texture>hc/gradient_bottom.png</texture>
+		</control>
+		<control type="image">
+			<left>0</left>
+			<top>0</top>
+			<width>1920</width>
+			<height>240</height>
+			<texture>hc/gradient_top.png</texture>
+		</control>
+		<!-- Lichtkegel des Projektors -->
+		<control type="image">
+			<left>1100</left>
+			<top>-60</top>
+			<width>760</width>
+			<height>900</height>
+			<texture>hc/light_cone.png</texture>
+			<animation effect="fade" start="18" end="35" time="5000" tween="sine" pulse="true" condition="!Skin.HasSetting(hc_reduce_motion)">Conditional</animation>
+			<animation effect="fade" start="0" end="100" time="1500">WindowOpen</animation>
+		</control>
+	</include>
+
+	<!-- ================================================================ Kopfzeile -->
+	<include name="HCTabButton">
+		<definition>
+			<control type="button" id="$PARAM[id]">
+				<width>230</width>
+				<height>76</height>
+				<label>$PARAM[label]</label>
+				<font>hc_display42</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>hc_text_faint</textcolor>
+				<focusedcolor>hc_text</focusedcolor>
+				<texturefocus border="30,0,30,0" colordiffuse="hc_red_glow">hc/tab_focus.png</texturefocus>
+				<texturenofocus>-</texturenofocus>
+				<onfocus>SetProperty(hc_section,$PARAM[section],home)</onfocus>
+				<onclick condition="Library.HasContent($PARAM[content])">SetFocus($PARAM[rows_id])</onclick>
+				<onclick condition="!Library.HasContent($PARAM[content])">SetFocus(5001)</onclick>
+				<ondown condition="Library.HasContent($PARAM[content])">$PARAM[rows_id]</ondown>
+				<ondown condition="!Library.HasContent($PARAM[content])">5001</ondown>
+				<animation effect="zoom" start="100" end="106" center="auto" time="200" tween="cubic" easing="out">Focus</animation>
+				<animation effect="zoom" start="106" end="100" center="auto" time="200" tween="cubic" easing="out">UnFocus</animation>
+			</control>
+		</definition>
+	</include>
+	<include name="HCIconButton">
+		<param name="onclick_pre">noop</param>
+		<definition>
+			<control type="group">
+				<width>$PARAM[width]</width>
+				<height>70</height>
+				<control type="button" id="$PARAM[id]">
+					<left>0</left>
+					<top>0</top>
+					<width>$PARAM[width]</width>
+					<height>70</height>
+					<label>$PARAM[label]</label>
+					<font>hc_text26</font>
+					<textoffsetx>70</textoffsetx>
+					<aligny>center</aligny>
+					<textcolor>hc_text_dim</textcolor>
+					<focusedcolor>hc_text</focusedcolor>
+					<texturefocus border="20" colordiffuse="hc_red">hc/rounded.png</texturefocus>
+					<texturenofocus border="20" colordiffuse="1AFFFFFF">hc/rounded.png</texturenofocus>
+					<onclick>$PARAM[onclick_pre]</onclick>
+					<onclick>$PARAM[onclick]</onclick>
+					<ondown condition="$EXP[HCSeriesSection]">4000</ondown>
+					<ondown condition="!$EXP[HCSeriesSection]">3000</ondown>
+				</control>
+				<control type="image">
+					<left>20</left>
+					<top>17</top>
+					<width>36</width>
+					<height>36</height>
+					<texture colordiffuse="hc_text">$PARAM[icon]</texture>
+				</control>
+			</control>
+		</definition>
+	</include>
+	<include name="HCTopBar">
+		<control type="group">
+			<animation effect="slide" start="0,-140" end="0,0" time="600" tween="cubic" easing="out">WindowOpen</animation>
+			<animation effect="slide" start="0,0" end="0,-140" time="300" tween="cubic" easing="in">WindowClose</animation>
+			<!-- Logo -->
+			<control type="label">
+				<left>80</left>
+				<top>30</top>
+				<width>400</width>
+				<height>80</height>
+				<font>hc_display60</font>
+				<aligny>center</aligny>
+				<label>[COLOR hc_gold]HOME[/COLOR]CINEMA</label>
+				<textcolor>hc_text</textcolor>
+				<shadowcolor>text_shadow</shadowcolor>
+			</control>
+			<control type="grouplist" id="100">
+				<left>470</left>
+				<top>32</top>
+				<width>520</width>
+				<height>76</height>
+				<orientation>horizontal</orientation>
+				<itemgap>10</itemgap>
+				<onright>110</onright>
+				<include content="HCTabButton">
+					<param name="id" value="101" />
+					<param name="label" value="Filme" />
+					<param name="section" value="movies" />
+					<param name="content" value="movies" />
+					<param name="rows_id" value="3000" />
+				</include>
+				<include content="HCTabButton">
+					<param name="id" value="102" />
+					<param name="label" value="Serien" />
+					<param name="section" value="series" />
+					<param name="content" value="tvshows" />
+					<param name="rows_id" value="4000" />
+				</include>
+			</control>
+			<!-- Goldene Markierung unter dem aktiven Bereich -->
+			<control type="image">
+				<left>555</left>
+				<top>104</top>
+				<width>60</width>
+				<height>6</height>
+				<texture colordiffuse="hc_gold">hc/rounded.png</texture>
+				<visible>!$EXP[HCSeriesSection] + !Control.HasFocus(101)</visible>
+				<animation effect="fade" time="250">VisibleChange</animation>
+			</control>
+			<control type="image">
+				<left>795</left>
+				<top>104</top>
+				<width>60</width>
+				<height>6</height>
+				<texture colordiffuse="hc_gold">hc/rounded.png</texture>
+				<visible>$EXP[HCSeriesSection] + !Control.HasFocus(102)</visible>
+				<animation effect="fade" time="250">VisibleChange</animation>
+			</control>
+			<control type="grouplist" id="110">
+				<right>230</right>
+				<top>35</top>
+				<width>500</width>
+				<height>70</height>
+				<orientation>horizontal</orientation>
+				<align>right</align>
+				<itemgap>16</itemgap>
+				<onleft>100</onleft>
+				<include content="HCIconButton">
+					<param name="id" value="111" />
+					<param name="width" value="250" />
+					<param name="label" value="Suchen" />
+					<param name="icon" value="icons/search.png" />
+					<param name="onclick_pre" value="Skin.Reset(HC.Search)" />
+					<param name="onclick" value="ActivateWindow(1150)" />
+				</include>
+				<include content="HCIconButton">
+					<param name="id" value="112" />
+					<param name="width" value="76" />
+					<param name="label" value="" />
+					<param name="icon" value="icons/settings.png" />
+					<param name="onclick" value="RunScript(script.homecinema,action=menu)" />
+				</include>
+			</control>
+			<control type="label">
+				<right>70</right>
+				<top>35</top>
+				<width>150</width>
+				<height>70</height>
+				<align>right</align>
+				<aligny>center</aligny>
+				<font>hc_display42</font>
+				<textcolor>hc_text_dim</textcolor>
+				<label>$INFO[System.Time(hh:mm)]</label>
+			</control>
+		</control>
+	</include>
+
+	<!-- ================================================================ Hero (Infos zum gewählten Titel) -->
+	<include name="HCHero">
+		<control type="group">
+			<left>80</left>
+			<top>150</top>
+			<visible>$EXP[HCRowsFocused] + !String.IsEmpty(ListItem.Label)</visible>
+			<animation effect="fade" start="0" end="100" time="400">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+			<control type="group">
+				<!-- Titel und Text gleiten bei jedem neuen Titel sanft herein -->
+				<animation type="Conditional" condition="Container.OnNext | Container.OnPrevious | Container.Scrolling" reversible="false">
+					<effect type="fade" start="40" end="100" time="450" tween="sine" />
+					<effect type="slide" start="-24,0" end="0,0" time="450" tween="cubic" easing="out" />
+				</animation>
+				<control type="label">
+					<left>0</left>
+					<top>0</top>
+					<width>1200</width>
+					<height>110</height>
+					<font>hc_display90</font>
+					<textcolor>hc_text</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$VAR[HCHeroTitle]</label>
+				</control>
+				<control type="label">
+					<left>2</left>
+					<top>112</top>
+					<width>1200</width>
+					<height>44</height>
+					<font>hc_text30</font>
+					<textcolor>hc_text_dim</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$VAR[HCHeroMeta]</label>
+				</control>
+				<control type="grouplist">
+					<left>2</left>
+					<top>164</top>
+					<width>1200</width>
+					<height>40</height>
+					<orientation>horizontal</orientation>
+					<itemgap>24</itemgap>
+					<usecontrolwidths>true</usecontrolwidths>
+					<control type="image">
+						<width>200</width>
+						<height>40</height>
+						<aspectratio align="left">keep</aspectratio>
+						<texture>$INFO[ListItem.UserRating,hc/stars,.png]</texture>
+						<visible>!String.IsEmpty(ListItem.UserRating) + !String.IsEqual(ListItem.UserRating,0)</visible>
+					</control>
+					<control type="label">
+						<width>auto</width>
+						<height>40</height>
+						<font>hc_bold26</font>
+						<textcolor>hc_gold</textcolor>
+						<label>$INFO[ListItem.Rating,TMDB ,]</label>
+						<visible>!String.IsEmpty(ListItem.Rating)</visible>
+					</control>
+					<control type="label">
+						<width>auto</width>
+						<height>40</height>
+						<font>hc_text26</font>
+						<textcolor>hc_text_dim</textcolor>
+						<label>$VAR[HCHeroCredits]</label>
+					</control>
+				</control>
+				<control type="textbox">
+					<left>2</left>
+					<top>222</top>
+					<width>1020</width>
+					<height>152</height>
+					<font>hc_text26</font>
+					<textcolor>hc_text_dim</textcolor>
+					<shadowcolor>text_shadow</shadowcolor>
+					<label>$INFO[ListItem.Plot]</label>
+				</control>
+			</control>
+		</control>
+	</include>
+
+	<!-- Abschnittstitel, solange die Kopfzeile den Fokus hat -->
+	<include name="HCSectionIntro">
+		<definition>
+		<control type="group">
+			<left>80</left>
+			<top>230</top>
+			<visible>!$EXP[HCRowsFocused] + $PARAM[visible]</visible>
+			<animation effect="fade" start="0" end="100" time="400">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="150">Hidden</animation>
+			<control type="label">
+				<width>1400</width>
+				<height>130</height>
+				<font>hc_display90</font>
+				<textcolor>hc_text</textcolor>
+				<label>$PARAM[title]</label>
+			</control>
+			<control type="label">
+				<top>130</top>
+				<width>1200</width>
+				<height>50</height>
+				<font>hc_text30</font>
+				<textcolor>hc_text_dim</textcolor>
+				<label>$PARAM[subtitle]</label>
+			</control>
+		</control>
+		</definition>
+	</include>
+
+	<!-- ================================================================ Poster-Reihe -->
+	<include name="HCPosterRow">
+		<param name="target">videos</param>
+		<param name="onclick">Action(Info)</param>
+		<param name="badge">false</param>
+		<param name="limit">40</param>
+		<definition>
+			<!-- Überschrift und Liste liegen direkt in der Grouplist, damit Hoch/Runter zwischen den Reihen funktioniert.
+			     Die Überschrift ist golden, solange ihre Reihe den Fokus hat (Variable HCRowHeader<list_id> aus build.py). -->
+			<control type="label" id="$PARAM[group_id]">
+				<left>80</left>
+				<width>1200</width>
+				<height>46</height>
+				<font>hc_display32</font>
+				<textcolor>hc_text_dim</textcolor>
+				<label>$VAR[HCRowHeader$PARAM[list_id]]</label>
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+				<animation effect="fade" start="0" end="100" time="500" delay="200">WindowOpen</animation>
+				<animation effect="slide" start="0,80" end="0,0" time="600" delay="150" tween="cubic" easing="out">WindowOpen</animation>
+			</control>
+			<control type="fixedlist" id="$PARAM[list_id]">
+				<left>62</left>
+				<top>-6</top>
+				<width>1858</width>
+				<height>352</height>
+				<visible>Integer.IsGreater(Container($PARAM[list_id]).NumItems,0) | Container($PARAM[list_id]).IsUpdating</visible>
+				<animation effect="fade" start="0" end="100" time="500" delay="200">WindowOpen</animation>
+				<animation effect="slide" start="0,80" end="0,0" time="600" delay="150" tween="cubic" easing="out">WindowOpen</animation>
+					<orientation>horizontal</orientation>
+					<focusposition>0</focusposition>
+					<movement>1</movement>
+					<preloaditems>2</preloaditems>
+					<scrolltime tween="cubic" easing="out">380</scrolltime>
+					<onclick>$PARAM[onclick]</onclick>
+					<itemlayout width="232" height="352">
+						<include content="HCPoster">
+							<param name="badge" value="$PARAM[badge]" />
+						</include>
+					</itemlayout>
+					<focusedlayout width="232" height="352">
+						<control type="group">
+							<animation effect="zoom" start="100" end="108" center="116,166" time="260" tween="cubic" easing="out">Focus</animation>
+							<animation effect="zoom" start="108" end="100" center="116,166" time="200" tween="cubic" easing="out">UnFocus</animation>
+							<control type="image">
+								<left>-2</left>
+								<top>-2</top>
+								<width>236</width>
+								<height>336</height>
+								<texture border="34" colordiffuse="hc_red_glow">hc/focus_glow.png</texture>
+								<visible>Control.HasFocus($PARAM[list_id])</visible>
+								<animation effect="fade" start="0" end="100" time="300">Visible</animation>
+							</control>
+							<include content="HCPoster">
+								<param name="badge" value="$PARAM[badge]" />
+								<param name="diffuse" value="FFFFFFFF" />
+							</include>
+						</control>
+					</focusedlayout>
+					<content target="$PARAM[target]" limit="$PARAM[limit]">$PARAM[content]</content>
+				</control>
+		</definition>
+	</include>
+
+	<include name="HCPoster">
+		<param name="diffuse">FFC8C8C8</param>
+		<definition>
+			<control type="image">
+				<left>16</left>
+				<top>16</top>
+				<width>200</width>
+				<height>300</height>
+				<aspectratio>scale</aspectratio>
+				<texture background="true" diffuse="hc/poster_mask.png" fallback="DefaultVideo.png" colordiffuse="$PARAM[diffuse]">$VAR[HCPosterArt]</texture>
+			</control>
+			<!-- Titel, falls kein Poster vorhanden -->
+			<control type="textbox">
+				<left>30</left>
+				<top>40</top>
+				<width>172</width>
+				<height>250</height>
+				<font>hc_display32</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>hc_text</textcolor>
+				<label>$INFO[ListItem.Label]</label>
+				<visible>String.IsEmpty(ListItem.Art(poster)) + String.IsEmpty(ListItem.Art(tvshow.poster))</visible>
+			</control>
+			<!-- "Weiter: S02E05" -->
+			<control type="group">
+				<visible>$PARAM[badge] + !String.IsEmpty(ListItem.Property(hc_code))</visible>
+				<control type="image">
+					<left>16</left>
+					<top>226</top>
+					<width>200</width>
+					<height>90</height>
+					<texture>hc/gradient_bottom.png</texture>
+				</control>
+				<control type="label">
+					<left>16</left>
+					<top>270</top>
+					<width>200</width>
+					<height>36</height>
+					<font>hc_bold26</font>
+					<align>center</align>
+					<textcolor>hc_gold</textcolor>
+					<label>$INFO[ListItem.Property(hc_code)]</label>
+				</control>
+			</control>
+			<!-- Fortschritt -->
+			<control type="progress">
+				<left>30</left>
+				<top>302</top>
+				<width>172</width>
+				<height>6</height>
+				<texturebg colordiffuse="40FFFFFF">colors/white.png</texturebg>
+				<midtexture colordiffuse="hc_red">colors/white.png</midtexture>
+				<info>ListItem.PercentPlayed</info>
+				<visible>Integer.IsGreater(ListItem.PercentPlayed,0)</visible>
+			</control>
+			<!-- Gesehen -->
+			<control type="image">
+				<left>174</left>
+				<top>26</top>
+				<width>32</width>
+				<height>32</height>
+				<texture colordiffuse="hc_gold">OverlayWatched.png</texture>
+				<visible>Integer.IsGreater(ListItem.PlayCount,0) + Integer.IsEqual(ListItem.PercentPlayed,0)</visible>
+			</control>
+		</definition>
+	</include>
+	<variable name="HCPosterArt">
+		<value condition="!String.IsEmpty(ListItem.Art(tvshow.poster))">$INFO[ListItem.Art(tvshow.poster)]</value>
+		<value>$INFO[ListItem.Art(poster)]</value>
+	</variable>
+</includes>

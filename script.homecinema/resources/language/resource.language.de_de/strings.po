@@ -1,0 +1,77 @@
+# HomeCinema
+msgid ""
+msgstr ""
+"Language: de_DE\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+
+msgctxt "#32010"
+msgid "Playback"
+msgstr "Wiedergabe"
+
+msgctxt "#32011"
+msgid "Series"
+msgstr "Serien"
+
+msgctxt "#32012"
+msgid "Play next episode automatically"
+msgstr "Nächste Folge automatisch abspielen"
+
+msgctxt "#32013"
+msgid "When an episode ends, the next one starts automatically, also across seasons."
+msgstr "Wenn eine Folge endet, startet automatisch die nächste – auch über Staffelgrenzen hinweg."
+
+msgctxt "#32014"
+msgid "Show hint before the end"
+msgstr "Hinweis kurz vor dem Ende anzeigen"
+
+msgctxt "#32015"
+msgid "Shows which episode comes next, 20 seconds before the end."
+msgstr "Zeigt 20 Sekunden vor dem Ende, welche Folge als Nächstes kommt."
+
+msgctxt "#32016"
+msgid "Ask \"Still watching?\" after"
+msgstr "\"Schaust du noch?\" fragen nach"
+
+msgctxt "#32017"
+msgid "After this many episodes in a row without a button press, playback waits for confirmation."
+msgstr "Nach so vielen Folgen am Stück ohne Tastendruck wartet HomeCinema auf eine Bestätigung."
+
+msgctxt "#32018"
+msgid "Never"
+msgstr "Nie"
+
+msgctxt "#32019"
+msgid "2 episodes"
+msgstr "2 Folgen"
+
+msgctxt "#32020"
+msgid "3 episodes"
+msgstr "3 Folgen"
+
+msgctxt "#32021"
+msgid "5 episodes"
+msgstr "5 Folgen"
+
+msgctxt "#32030"
+msgid "Library"
+msgstr "Bibliothek"
+
+msgctxt "#32031"
+msgid "Add media folder"
+msgstr "Medienordner hinzufügen"
+
+msgctxt "#32032"
+msgid "Choose a folder with movies and series. HomeCinema detects everything automatically."
+msgstr "Wähle einen Ordner mit Filmen und Serien. HomeCinema erkennt alles automatisch."
+
+msgctxt "#32033"
+msgid "Media folders"
+msgstr "Medienordner"
+
+msgctxt "#32034"
+msgid "Setup done"
+msgstr "Einrichtung abgeschlossen"
+
+msgctxt "#32035"
+msgid "Library scan pending"
+msgstr "Bibliotheks-Scan ausstehend"

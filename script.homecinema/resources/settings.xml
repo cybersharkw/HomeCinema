@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings version="1">
+	<section id="script.homecinema">
+		<category id="playback" label="32010">
+			<group id="1" label="32011">
+				<setting id="autoplay" type="boolean" label="32012" help="32013">
+					<level>0</level>
+					<default>true</default>
+					<control type="toggle"/>
+				</setting>
+				<setting id="upnext_notify" type="boolean" label="32014" help="32015" parent="autoplay">
+					<level>0</level>
+					<default>true</default>
+					<dependencies>
+						<dependency type="enable" setting="autoplay">true</dependency>
+					</dependencies>
+					<control type="toggle"/>
+				</setting>
+				<setting id="still_watching" type="integer" label="32016" help="32017" parent="autoplay">
+					<level>0</level>
+					<default>3</default>
+					<constraints>
+						<options>
+							<option label="32018">0</option>
+							<option label="32019">2</option>
+							<option label="32020">3</option>
+							<option label="32021">5</option>
+						</options>
+					</constraints>
+					<dependencies>
+						<dependency type="enable" setting="autoplay">true</dependency>
+					</dependencies>
+					<control type="spinner" format="string"/>
+				</setting>
+			</group>
+		</category>
+		<category id="library" label="32030">
+			<group id="1" label="32030">
+				<setting id="setup" type="action" label="32031" help="32032">
+					<level>0</level>
+					<data>RunScript(script.homecinema,action=setup)</data>
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
+					<control type="button" format="action">
+						<close>true</close>
+					</control>
+				</setting>
+				<setting id="media_roots" type="string" label="32033">
+					<level>4</level>
+					<default/>
+					<constraints>
+						<allowempty>true</allowempty>
+					</constraints>
+					<control type="edit" format="string"/>
+				</setting>
+				<setting id="setup_done" type="boolean" label="32034">
+					<level>4</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
+				<setting id="pending_scan" type="boolean" label="32035">
+					<level>4</level>
+					<default>false</default>
+					<control type="toggle"/>
+				</setting>
+			</group>
+		</category>
+	</section>
+</settings>

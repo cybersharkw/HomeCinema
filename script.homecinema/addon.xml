@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.homecinema" name="HomeCinema" version="1.0.0" provider-name="HomeCinema">
+	<requires>
+		<import addon="xbmc.python" version="3.0.1"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.python.pluginsource" library="plugin.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py"/>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="de_DE">Dein Heimkino: Filme und Serien im Kino-Look</summary>
+		<summary lang="en_GB">Your home cinema: movies and series with a cinema look</summary>
+		<description lang="de_DE">Richtet Kodi als HomeCinema ein: Medienordner wählen, Filme und Serien werden erkannt und mit Bildern, Beschreibungen und Darstellern von TMDB geladen. Mit Sternebewertung, "Zuletzt gesehen" und automatischem Abspielen der nächsten Folge.</description>
+		<description lang="en_GB">Sets up Kodi as HomeCinema: pick a media folder, movies and series are detected and enriched with artwork, plots and cast from TMDB. Includes star ratings, "recently watched" and automatic next-episode playback.</description>
+		<platform>all</platform>
+		<license>GPL-2.0-or-later</license>
+		<assets>
+			<icon>resources/icon.png</icon>
+			<fanart>resources/fanart.png</fanart>
+		</assets>
+	</extension>
+</addon>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HomeCinema Startseite: Filme | Serien, "Zuletzt gesehen" und Genre-Reihen -->
+<window>
+	<defaultcontrol always="false">3000</defaultcontrol>
+	<backgroundcolor>FF000000</backgroundcolor>
+	<onload condition="String.IsEmpty(Window(Home).Property(hc_section))">SetProperty(hc_section,movies,home)</onload>
+	<onload condition="!Library.HasContent(movies) + Library.HasContent(tvshows)">SetProperty(hc_section,series,home)</onload>
+	<onload condition="!Library.HasContent(movies) + Library.HasContent(tvshows)">SetFocus(4000)</onload>
+	<onload condition="!Library.HasContent(movies) + !Library.HasContent(tvshows)">SetFocus(5001)</onload>
+	<controls>
+		<include>HCBackground</include>
+		<include>HCHero</include>
+		<include content="HCSectionIntro">
+			<param name="title" value="Filme" />
+			<param name="subtitle" value="Drücke [B]Runter[/B], um durch deine Filme zu stöbern." />
+			<param name="visible" value="!$EXP[HCSeriesSection] + Library.HasContent(movies)" />
+		</include>
+		<include content="HCSectionIntro">
+			<param name="title" value="Serien" />
+			<param name="subtitle" value="Drücke [B]Runter[/B], um durch deine Serien zu stöbern." />
+			<param name="visible" value="$EXP[HCSeriesSection] + Library.HasContent(tvshows)" />
+		</include>
+
+		<!-- Filme -->
+		<control type="grouplist" id="3000">
+			<left>0</left>
+			<top>640</top>
+			<width>1920</width>
+			<height>398</height>
+			<orientation>vertical</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<itemgap>0</itemgap>
+			<scrolltime tween="cubic" easing="out">450</scrolltime>
+			<onup>101</onup>
+			<onback>101</onback>
+			<visible>!$EXP[HCSeriesSection]</visible>
+			<animation effect="fade" start="0" end="100" time="350">Visible</animation>
+			<animation effect="slide" start="120,0" end="0,0" time="450" tween="cubic" easing="out">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="150">Hidden</animation>
+			<include>HCMovieRows</include>
+		</control>
+
+		<!-- Serien -->
+		<control type="grouplist" id="4000">
+			<left>0</left>
+			<top>640</top>
+			<width>1920</width>
+			<height>398</height>
+			<orientation>vertical</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<itemgap>0</itemgap>
+			<scrolltime tween="cubic" easing="out">450</scrolltime>
+			<onup>102</onup>
+			<onback>102</onback>
+			<visible>$EXP[HCSeriesSection]</visible>
+			<animation effect="fade" start="0" end="100" time="350">Visible</animation>
+			<animation effect="slide" start="-120,0" end="0,0" time="450" tween="cubic" easing="out">Visible</animation>
+			<animation effect="fade" start="100" end="0" time="150">Hidden</animation>
+			<include>HCSeriesRows</include>
+		</control>
+
+		<!-- Bereich ohne Inhalte: Einrichtung anbieten -->
+		<control type="group" id="5000">
+			<left>80</left>
+			<top>300</top>
+			<visible>[!$EXP[HCSeriesSection] + !Library.HasContent(movies)] | [$EXP[HCSeriesSection] + !Library.HasContent(tvshows)]</visible>
+			<animation effect="fade" start="0" end="100" time="500">Visible</animation>
+			<control type="label">
+				<width>1400</width>
+				<height>130</height>
+				<font>hc_display90</font>
+				<textcolor>hc_text</textcolor>
+				<label>Willkommen im Kino</label>
+			</control>
+			<control type="textbox">
+				<top>130</top>
+				<width>1100</width>
+				<height>130</height>
+				<font>hc_text30</font>
+				<textcolor>hc_text_dim</textcolor>
+				<label>$VAR[HCEmptyText]</label>
+			</control>
+			<control type="button" id="5001">
+				<top>290</top>
+				<width>520</width>
+				<height>84</height>
+				<label>Medienordner einrichten</label>
+				<font>hc_bold30</font>
+				<align>center</align>
+				<aligny>center</aligny>
+				<textcolor>hc_text_dim</textcolor>
+				<focusedcolor>hc_text</focusedcolor>
+				<texturefocus border="20" colordiffuse="hc_red">hc/rounded.png</texturefocus>
+				<texturenofocus border="20" colordiffuse="1AFFFFFF">hc/rounded.png</texturenofocus>
+				<onclick>RunScript(script.homecinema,action=setup)</onclick>
+				<onup condition="$EXP[HCSeriesSection]">102</onup>
+				<onup condition="!$EXP[HCSeriesSection]">101</onup>
+				<visible>!Library.IsScanningVideo</visible>
+				<animation effect="zoom" start="100" end="105" center="auto" time="200" tween="cubic" easing="out">Focus</animation>
+				<animation effect="zoom" start="105" end="100" center="auto" time="200" tween="cubic" easing="out">UnFocus</animation>
+			</control>
+		</control>
+
+		<include>HCTopBar</include>
+	</controls>
+</window>

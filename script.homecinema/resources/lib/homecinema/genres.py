@@ -1,0 +1,58 @@
+"""Genre-Reihen der Startseite.
+
+TMDB liefert Genres je nach Sprache und für Filme/Serien unterschiedlich benannt
+("Science Fiction" vs. "Sci-Fi & Fantasy"). Jede Reihe fasst alle Varianten zusammen.
+Aus dieser Liste erzeugt tools/build.py die Smart-Playlists und Reihen des Skins.
+"""
+
+# (Schlüssel, Anzeigename, Film-Genres, Serien-Genres)
+GENRE_ROWS = [
+    ("action", "Action",
+     ["Action"],
+     ["Action & Adventure", "Action"]),
+    ("scifi", "Science-Fiction",
+     ["Science Fiction", "Science-Fiction"],
+     ["Sci-Fi & Fantasy", "Science Fiction", "Science-Fiction"]),
+    ("horror", "Horror",
+     ["Horror"],
+     ["Horror"]),
+    ("thriller", "Thriller",
+     ["Thriller"],
+     ["Thriller", "Mystery"]),
+    ("comedy", "Komödie",
+     ["Komödie", "Comedy"],
+     ["Komödie", "Comedy"]),
+    ("drama", "Drama",
+     ["Drama"],
+     ["Drama"]),
+    ("crime", "Krimi",
+     ["Krimi", "Crime"],
+     ["Krimi", "Crime"]),
+    ("adventure", "Abenteuer",
+     ["Abenteuer", "Adventure"],
+     ["Action & Adventure", "Abenteuer", "Adventure"]),
+    ("fantasy", "Fantasy",
+     ["Fantasy"],
+     ["Sci-Fi & Fantasy", "Fantasy"]),
+    ("mystery", "Mystery",
+     ["Mystery"],
+     ["Mystery"]),
+    ("animation", "Animation",
+     ["Animation"],
+     ["Animation"]),
+    ("family", "Familie",
+     ["Familie", "Family"],
+     ["Familie", "Family", "Kids"]),
+    ("romance", "Liebesfilm",
+     ["Liebesfilm", "Romance"],
+     ["Liebesfilm", "Romance", "Soap"]),
+    ("documentary", "Dokumentation",
+     ["Dokumentarfilm", "Documentary"],
+     ["Dokumentarfilm", "Documentary", "Reality"]),
+    ("war", "Krieg & Geschichte",
+     ["Kriegsfilm", "War", "Historie", "History"],
+     ["War & Politics", "Kriegsfilm", "War", "Historie", "History"]),
+    ("western", "Western",
+     ["Western"],
+     ["Western"]),
+]

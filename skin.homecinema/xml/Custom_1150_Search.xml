@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- HomeCinema Suche: Filme und Serien gleichzeitig (Titel, Schauspieler, Regie) -->
+<window type="window" id="1150">
+	<defaultcontrol always="true">1160</defaultcontrol>
+	<backgroundcolor>FF000000</backgroundcolor>
+	<onload condition="String.IsEmpty(Skin.String(HC.Search))">RunScript(script.homecinema,action=search)</onload>
+	<onload condition="!String.IsEmpty(Skin.String(HC.Search))">SetFocus(1151)</onload>
+	<controls>
+		<include>HCBackground</include>
+		<include>HCHero</include>
+
+		<control type="group">
+			<animation effect="slide" start="0,-140" end="0,0" time="500" tween="cubic" easing="out">WindowOpen</animation>
+			<animation effect="fade" start="100" end="0" time="250">WindowClose</animation>
+			<control type="label">
+				<left>80</left>
+				<top>30</top>
+				<width>800</width>
+				<height>80</height>
+				<font>hc_display60</font>
+				<aligny>center</aligny>
+				<label>[COLOR hc_gold]SUCHE[/COLOR]</label>
+			</control>
+			<control type="button" id="1160">
+				<left>360</left>
+				<top>32</top>
+				<width>1000</width>
+				<height>76</height>
+				<label>$VAR[HCSearchLabel]</label>
+				<font>hc_text30</font>
+				<textoffsetx>80</textoffsetx>
+				<aligny>center</aligny>
+				<textcolor>hc_text_dim</textcolor>
+				<focusedcolor>hc_text</focusedcolor>
+				<texturefocus border="20" colordiffuse="hc_red">hc/rounded.png</texturefocus>
+				<texturenofocus border="20" colordiffuse="26FFFFFF">hc/rounded.png</texturenofocus>
+				<onclick>RunScript(script.homecinema,action=search)</onclick>
+				<ondown>1151</ondown>
+			</control>
+			<control type="image">
+				<left>384</left>
+				<top>51</top>
+				<width>38</width>
+				<height>38</height>
+				<texture colordiffuse="hc_text">icons/search.png</texture>
+			</control>
+		</control>
+
+		<!-- Ergebnisse -->
+		<control type="grouplist" id="1151">
+			<left>0</left>
+			<top>640</top>
+			<width>1920</width>
+			<height>398</height>
+			<orientation>vertical</orientation>
+			<usecontrolcoords>true</usecontrolcoords>
+			<scrolltime tween="cubic" easing="out">450</scrolltime>
+			<onup>1160</onup>
+			<visible>!String.IsEmpty(Skin.String(HC.Search))</visible>
+			<include content="HCPosterRow">
+				<param name="group_id" value="1170" />
+				<param name="list_id" value="1171" />
+				<param name="header" value="Filme" />
+				<param name="content" value="videodb://movies/titles/?xsp={&quot;order&quot;:{&quot;direction&quot;:&quot;ascending&quot;,&quot;method&quot;:&quot;sorttitle&quot;},&quot;rules&quot;:{&quot;or&quot;:[{&quot;field&quot;:&quot;title&quot;,&quot;operator&quot;:&quot;contains&quot;,&quot;value&quot;:[&quot;$INFO[Skin.String(HC.Search)]&quot;]},{&quot;field&quot;:&quot;originaltitle&quot;,&quot;operator&quot;:&quot;contains&quot;,&quot;value&quot;:[&quot;$INFO[Skin.String(HC.Search)]&quot;]},{&quot;field&quot;:&quot;actor&quot;,&quot;operator&quot;:&quot;contains&quot;,&quot;value&quot;:[&quot;$INFO[Skin.String(HC.Search)]&quot;]},{&quot;field&quot;:&quot;director&quot;,&quot;operator&quot;:&quot;contains&quot;,&quot;value&quot;:[&quot;$INFO[Skin.String(HC.Search)]&quot;]}]},&quot;type&quot;:&quot;movies&quot;}" />
+			</include>
+			<include content="HCPosterRow">
+				<param name="group_id" value="1180" />
+				<param name="list_id" value="1181" />
+				<param name="header" value="Serien" />
+				<param name="content" value="videodb://tvshows/titles/?xsp={&quot;order&quot;:{&quot;direction&quot;:&quot;ascending&quot;,&quot;method&quot;:&quot;sorttitle&quot;},&quot;rules&quot;:{&quot;or&quot;:[{&quot;field&quot;:&quot;title&quot;,&quot;operator&quot;:&quot;contains&quot;,&quot;value&quot;:[&quot;$INFO[Skin.String(HC.Search)]&quot;]},{&quot;field&quot;:&quot;actor&quot;,&quot;operator&quot;:&quot;contains&quot;,&quot;value&quot;:[&quot;$INFO[Skin.String(HC.Search)]&quot;]},{&quot;field&quot;:&quot;director&quot;,&quot;operator&quot;:&quot;contains&quot;,&quot;value&quot;:[&quot;$INFO[Skin.String(HC.Search)]&quot;]}]},&quot;type&quot;:&quot;tvshows&quot;}" />
+			</include>
+		</control>
+
+		<!-- Keine Treffer / Hinweis -->
+		<control type="group">
+			<left>80</left>
+			<top>300</top>
+			<visible>!ControlGroup(1151).HasFocus</visible>
+			<visible>String.IsEmpty(Skin.String(HC.Search)) | [!Container(1171).IsUpdating + !Container(1181).IsUpdating + Integer.IsEqual(Container(1171).NumItems,0) + Integer.IsEqual(Container(1181).NumItems,0)]</visible>
+			<animation effect="fade" start="0" end="100" time="400">Visible</animation>
+			<control type="label">
+				<width>1600</width>
+				<height>130</height>
+				<font>hc_display90</font>
+				<label>$VAR[HCSearchEmptyTitle]</label>
+			</control>
+			<control type="label">
+				<top>130</top>
+				<width>1400</width>
+				<height>50</height>
+				<font>hc_text30</font>
+				<textcolor>hc_text_dim</textcolor>
+				<label>Suche nach Titel, Schauspieler oder Regie. OK auf dem Suchfeld öffnet die Tastatur.</label>
+			</control>
+		</control>
+	</controls>
+</window>

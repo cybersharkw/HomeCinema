@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Automatisch erzeugt von tools/build.py aus script.homecinema/resources/lib/homecinema/genres.py -->
+<includes>
+	<include name="HCMovieRows">
+		<include content="HCPosterRow">
+			<param name="group_id" value="3100" />
+			<param name="list_id" value="3101" />
+			<param name="header" value="Zuletzt gesehen" />
+			<param name="content" value="special://skin/playlists/hc_movies_recent.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3110" />
+			<param name="list_id" value="3111" />
+			<param name="header" value="Action" />
+			<param name="content" value="special://skin/playlists/hc_movies_action.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3120" />
+			<param name="list_id" value="3121" />
+			<param name="header" value="Science-Fiction" />
+			<param name="content" value="special://skin/playlists/hc_movies_scifi.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3130" />
+			<param name="list_id" value="3131" />
+			<param name="header" value="Horror" />
+			<param name="content" value="special://skin/playlists/hc_movies_horror.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3140" />
+			<param name="list_id" value="3141" />
+			<param name="header" value="Thriller" />
+			<param name="content" value="special://skin/playlists/hc_movies_thriller.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3150" />
+			<param name="list_id" value="3151" />
+			<param name="header" value="Komödie" />
+			<param name="content" value="special://skin/playlists/hc_movies_comedy.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3160" />
+			<param name="list_id" value="3161" />
+			<param name="header" value="Drama" />
+			<param name="content" value="special://skin/playlists/hc_movies_drama.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3170" />
+			<param name="list_id" value="3171" />
+			<param name="header" value="Krimi" />
+			<param name="content" value="special://skin/playlists/hc_movies_crime.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3180" />
+			<param name="list_id" value="3181" />
+			<param name="header" value="Abenteuer" />
+			<param name="content" value="special://skin/playlists/hc_movies_adventure.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3190" />
+			<param name="list_id" value="3191" />
+			<param name="header" value="Fantasy" />
+			<param name="content" value="special://skin/playlists/hc_movies_fantasy.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3200" />
+			<param name="list_id" value="3201" />
+			<param name="header" value="Mystery" />
+			<param name="content" value="special://skin/playlists/hc_movies_mystery.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3210" />
+			<param name="list_id" value="3211" />
+			<param name="header" value="Animation" />
+			<param name="content" value="special://skin/playlists/hc_movies_animation.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3220" />
+			<param name="list_id" value="3221" />
+			<param name="header" value="Familie" />
+			<param name="content" value="special://skin/playlists/hc_movies_family.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3230" />
+			<param name="list_id" value="3231" />
+			<param name="header" value="Liebesfilm" />
+			<param name="content" value="special://skin/playlists/hc_movies_romance.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3240" />
+			<param name="list_id" value="3241" />
+			<param name="header" value="Dokumentation" />
+			<param name="content" value="special://skin/playlists/hc_movies_documentary.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3250" />
+			<param name="list_id" value="3251" />
+			<param name="header" value="Krieg &amp; Geschichte" />
+			<param name="content" value="special://skin/playlists/hc_movies_war.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="3260" />
+			<param name="list_id" value="3261" />
+			<param name="header" value="Western" />
+			<param name="content" value="special://skin/playlists/hc_movies_western.xsp" />
+		</include>
+	</include>
+	<include name="HCSeriesRows">
+		<include content="HCPosterRow">
+			<param name="group_id" value="4100" />
+			<param name="list_id" value="4101" />
+			<param name="header" value="Zuletzt gesehen" />
+			<param name="content" value="plugin://script.homecinema/?action=continue_series&amp;refresh=$INFO[Window(Home).Property(hc_refresh)]" />
+			<param name="onclick" value="RunScript(script.homecinema,action=play_episode,episodeid=$INFO[ListItem.DBID])" />
+			<param name="badge" value="true" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4110" />
+			<param name="list_id" value="4111" />
+			<param name="header" value="Action" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_action.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4120" />
+			<param name="list_id" value="4121" />
+			<param name="header" value="Science-Fiction" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_scifi.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4130" />
+			<param name="list_id" value="4131" />
+			<param name="header" value="Horror" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_horror.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4140" />
+			<param name="list_id" value="4141" />
+			<param name="header" value="Thriller" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_thriller.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4150" />
+			<param name="list_id" value="4151" />
+			<param name="header" value="Komödie" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_comedy.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4160" />
+			<param name="list_id" value="4161" />
+			<param name="header" value="Drama" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_drama.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4170" />
+			<param name="list_id" value="4171" />
+			<param name="header" value="Krimi" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_crime.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4180" />
+			<param name="list_id" value="4181" />
+			<param name="header" value="Abenteuer" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_adventure.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4190" />
+			<param name="list_id" value="4191" />
+			<param name="header" value="Fantasy" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_fantasy.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4200" />
+			<param name="list_id" value="4201" />
+			<param name="header" value="Mystery" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_mystery.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4210" />
+			<param name="list_id" value="4211" />
+			<param name="header" value="Animation" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_animation.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4220" />
+			<param name="list_id" value="4221" />
+			<param name="header" value="Familie" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_family.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4230" />
+			<param name="list_id" value="4231" />
+			<param name="header" value="Liebesfilm" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_romance.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4240" />
+			<param name="list_id" value="4241" />
+			<param name="header" value="Dokumentation" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_documentary.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4250" />
+			<param name="list_id" value="4251" />
+			<param name="header" value="Krieg &amp; Geschichte" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_war.xsp" />
+		</include>
+		<include content="HCPosterRow">
+			<param name="group_id" value="4260" />
+			<param name="list_id" value="4261" />
+			<param name="header" value="Western" />
+			<param name="content" value="special://skin/playlists/hc_tvshows_western.xsp" />
+		</include>
+	</include>
+	<variable name="HCRowHeader1171">
+		<value condition="Control.HasFocus(1171)">[COLOR hc_gold]Filme[/COLOR]</value>
+		<value>Filme</value>
+	</variable>
+	<variable name="HCRowHeader1181">
+		<value condition="Control.HasFocus(1181)">[COLOR hc_gold]Serien[/COLOR]</value>
+		<value>Serien</value>
+	</variable>
+	<variable name="HCRowHeader3101">
+		<value condition="Control.HasFocus(3101)">[COLOR hc_gold]Zuletzt gesehen[/COLOR]</value>
+		<value>Zuletzt gesehen</value>
+	</variable>
+	<variable name="HCRowHeader4101">
+		<value condition="Control.HasFocus(4101)">[COLOR hc_gold]Zuletzt gesehen[/COLOR]</value>
+		<value>Zuletzt gesehen</value>
+	</variable>
+	<variable name="HCRowHeader3111">
+		<value condition="Control.HasFocus(3111)">[COLOR hc_gold]Action[/COLOR]</value>
+		<value>Action</value>
+	</variable>
+	<variable name="HCRowHeader4111">
+		<value condition="Control.HasFocus(4111)">[COLOR hc_gold]Action[/COLOR]</value>
+		<value>Action</value>
+	</variable>
+	<variable name="HCRowHeader3121">
+		<value condition="Control.HasFocus(3121)">[COLOR hc_gold]Science-Fiction[/COLOR]</value>
+		<value>Science-Fiction</value>
+	</variable>
+	<variable name="HCRowHeader4121">
+		<value condition="Control.HasFocus(4121)">[COLOR hc_gold]Science-Fiction[/COLOR]</value>
+		<value>Science-Fiction</value>
+	</variable>
+	<variable name="HCRowHeader3131">
+		<value condition="Control.HasFocus(3131)">[COLOR hc_gold]Horror[/COLOR]</value>
+		<value>Horror</value>
+	</variable>
+	<variable name="HCRowHeader4131">
+		<value condition="Control.HasFocus(4131)">[COLOR hc_gold]Horror[/COLOR]</value>
+		<value>Horror</value>
+	</variable>
+	<variable name="HCRowHeader3141">
+		<value condition="Control.HasFocus(3141)">[COLOR hc_gold]Thriller[/COLOR]</value>
+		<value>Thriller</value>
+	</variable>
+	<variable name="HCRowHeader4141">
+		<value condition="Control.HasFocus(4141)">[COLOR hc_gold]Thriller[/COLOR]</value>
+		<value>Thriller</value>
+	</variable>
+	<variable name="HCRowHeader3151">
+		<value condition="Control.HasFocus(3151)">[COLOR hc_gold]Komödie[/COLOR]</value>
+		<value>Komödie</value>
+	</variable>
+	<variable name="HCRowHeader4151">
+		<value condition="Control.HasFocus(4151)">[COLOR hc_gold]Komödie[/COLOR]</value>
+		<value>Komödie</value>
+	</variable>
+	<variable name="HCRowHeader3161">
+		<value condition="Control.HasFocus(3161)">[COLOR hc_gold]Drama[/COLOR]</value>
+		<value>Drama</value>
+	</variable>
+	<variable name="HCRowHeader4161">
+		<value condition="Control.HasFocus(4161)">[COLOR hc_gold]Drama[/COLOR]</value>
+		<value>Drama</value>
+	</variable>
+	<variable name="HCRowHeader3171">
+		<value condition="Control.HasFocus(3171)">[COLOR hc_gold]Krimi[/COLOR]</value>
+		<value>Krimi</value>
+	</variable>
+	<variable name="HCRowHeader4171">
+		<value condition="Control.HasFocus(4171)">[COLOR hc_gold]Krimi[/COLOR]</value>
+		<value>Krimi</value>
+	</variable>
+	<variable name="HCRowHeader3181">
+		<value condition="Control.HasFocus(3181)">[COLOR hc_gold]Abenteuer[/COLOR]</value>
+		<value>Abenteuer</value>
+	</variable>
+	<variable name="HCRowHeader4181">
+		<value condition="Control.HasFocus(4181)">[COLOR hc_gold]Abenteuer[/COLOR]</value>
+		<value>Abenteuer</value>
+	</variable>
+	<variable name="HCRowHeader3191">
+		<value condition="Control.HasFocus(3191)">[COLOR hc_gold]Fantasy[/COLOR]</value>
+		<value>Fantasy</value>
+	</variable>
+	<variable name="HCRowHeader4191">
+		<value condition="Control.HasFocus(4191)">[COLOR hc_gold]Fantasy[/COLOR]</value>
+		<value>Fantasy</value>
+	</variable>
+	<variable name="HCRowHeader3201">
+		<value condition="Control.HasFocus(3201)">[COLOR hc_gold]Mystery[/COLOR]</value>
+		<value>Mystery</value>
+	</variable>
+	<variable name="HCRowHeader4201">
+		<value condition="Control.HasFocus(4201)">[COLOR hc_gold]Mystery[/COLOR]</value>
+		<value>Mystery</value>
+	</variable>
+	<variable name="HCRowHeader3211">
+		<value condition="Control.HasFocus(3211)">[COLOR hc_gold]Animation[/COLOR]</value>
+		<value>Animation</value>
+	</variable>
+	<variable name="HCRowHeader4211">
+		<value condition="Control.HasFocus(4211)">[COLOR hc_gold]Animation[/COLOR]</value>
+		<value>Animation</value>
+	</variable>
+	<variable name="HCRowHeader3221">
+		<value condition="Control.HasFocus(3221)">[COLOR hc_gold]Familie[/COLOR]</value>
+		<value>Familie</value>
+	</variable>
+	<variable name="HCRowHeader4221">
+		<value condition="Control.HasFocus(4221)">[COLOR hc_gold]Familie[/COLOR]</value>
+		<value>Familie</value>
+	</variable>
+	<variable name="HCRowHeader3231">
+		<value condition="Control.HasFocus(3231)">[COLOR hc_gold]Liebesfilm[/COLOR]</value>
+		<value>Liebesfilm</value>
+	</variable>
+	<variable name="HCRowHeader4231">
+		<value condition="Control.HasFocus(4231)">[COLOR hc_gold]Liebesfilm[/COLOR]</value>
+		<value>Liebesfilm</value>
+	</variable>
+	<variable name="HCRowHeader3241">
+		<value condition="Control.HasFocus(3241)">[COLOR hc_gold]Dokumentation[/COLOR]</value>
+		<value>Dokumentation</value>
+	</variable>
+	<variable name="HCRowHeader4241">
+		<value condition="Control.HasFocus(4241)">[COLOR hc_gold]Dokumentation[/COLOR]</value>
+		<value>Dokumentation</value>
+	</variable>
+	<variable name="HCRowHeader3251">
+		<value condition="Control.HasFocus(3251)">[COLOR hc_gold]Krieg &amp; Geschichte[/COLOR]</value>
+		<value>Krieg &amp; Geschichte</value>
+	</variable>
+	<variable name="HCRowHeader4251">
+		<value condition="Control.HasFocus(4251)">[COLOR hc_gold]Krieg &amp; Geschichte[/COLOR]</value>
+		<value>Krieg &amp; Geschichte</value>
+	</variable>
+	<variable name="HCRowHeader3261">
+		<value condition="Control.HasFocus(3261)">[COLOR hc_gold]Western[/COLOR]</value>
+		<value>Western</value>
+	</variable>
+	<variable name="HCRowHeader4261">
+		<value condition="Control.HasFocus(4261)">[COLOR hc_gold]Western[/COLOR]</value>
+		<value>Western</value>
+	</variable>
+</includes>
